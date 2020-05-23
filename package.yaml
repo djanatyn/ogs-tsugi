@@ -10,11 +10,21 @@ dependencies:
   - aeson
   - servant
   - servant-client
+  - servant-client-core
+  - http-client-tls
 
 library:
   source-dirs:
     - src
 
+default-extensions:
+  - DataKinds
+  - DeriveGeneric
+  - DerivingVia
+  - TypeFamilies
+  - TypeOperators
+  - TypeApplications
+  
 executables:
   ogs-tsugi:
     source-dirs:

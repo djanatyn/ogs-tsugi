@@ -1,5 +1,7 @@
 module OGS.Tsugi.Cli where
 
+import Servant.Client
+import Servant.Client.Generic
+
 main :: IO ()
-main = do
-  putStrLn "hello world"
+main = putStrLn "hello world"
