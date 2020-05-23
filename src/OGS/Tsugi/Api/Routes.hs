@@ -10,8 +10,7 @@ module OGS.Tsugi.Api.Routes
   )
 where
 
-import Data.Aeson (Value)
-import OGS.Tsugi.Api.Types (PlayerId (..))
+import OGS.Tsugi.Api.Types (Player (..), PlayerId (..))
 import Servant.API
 import Servant.API.Generic
 
@@ -19,6 +18,6 @@ data OGSApi r
   = OGSApi
       { getPlayer ::
           r :- "players" :> Capture "playerId" PlayerId
-            :> Get '[JSON] Value
+            :> Get '[JSON] Player
       }
   deriving (Generic)

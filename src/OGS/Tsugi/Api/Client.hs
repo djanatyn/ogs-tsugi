@@ -4,11 +4,16 @@ module OGS.Tsugi.Api.Client
   ( -- * OGS API Client
     ogsClient,
     runOgs,
+
+    -- * OGS API Types
+    module OGS.Tsugi.Api.Types,
+    module OGS.Tsugi.Api.Routes,
   )
 where
 
 import Network.HTTP.Client.TLS
-import OGS.Tsugi.Api.Routes (OGSApi)
+import OGS.Tsugi.Api.Routes
+import OGS.Tsugi.Api.Types
 import Servant.Client
 import Servant.Client.Core (RunClient)
 import Servant.Client.Generic
