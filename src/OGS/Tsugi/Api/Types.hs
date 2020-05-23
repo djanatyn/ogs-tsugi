@@ -28,7 +28,21 @@ data Game
         handicap :: Int,
         black :: PlayerId,
         white :: PlayerId,
-        rules :: Text
+        rules :: Text,
+        gamedata :: GameRecord
+      }
+  deriving (Generic, Show)
+
+data GameRecord
+  = GameRecord
+      { white_player_id :: PlayerId,
+        black_player_id :: PlayerId,
+        game_id :: GameId,
+        komi :: Double,
+        rules :: Text,
+        winner :: PlayerId,
+        outcome :: Text,
+        end_time :: Int
       }
   deriving (Generic, Show)
 
@@ -43,3 +57,5 @@ data Player
 instance FromJSON Player
 
 instance FromJSON Game
+
+instance FromJSON GameRecord
