@@ -1,0 +1,28 @@
+---
+name: "ogs-tsugi"
+author: "Jonathan Strickland"
+
+dependencies:
+  - base
+  - text
+  - bytestring
+  - transformers
+  - aeson
+  - servant
+  - servant-client
+
+library:
+  source-dirs:
+    - src
+
+executables:
+  ogs-tsugi:
+    source-dirs:
+      - src
+    ghc-options:
+      - -rtsopts
+      - -g
+      - -threaded
+      - -main-is
+      - OGS.Tsugi.Cli
+    main: OGS/Tsugi/Cli.hs

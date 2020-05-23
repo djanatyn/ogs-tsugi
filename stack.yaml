@@ -1,0 +1,9 @@
+---
+resolver: lts-15.13
+packages:
+  - .
+nix:
+  enable: true
+  pure: false
+  packages:
+    - zlib
