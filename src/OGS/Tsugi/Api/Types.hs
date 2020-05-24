@@ -2,6 +2,8 @@
 {-# LANGUAGE DerivingVia #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE GADTs #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards #-}
 
 module OGS.Tsugi.Api.Types
   ( -- * API Types
@@ -12,7 +14,7 @@ module OGS.Tsugi.Api.Types
   )
 where
 
-import Data.Aeson (FromJSON)
+import Data.Aeson
 import Data.Text (Text)
 import GHC.Generics (Generic)
 import Servant.API (ToHttpApiData)
@@ -23,28 +25,31 @@ newtype GameId = GameId Int deriving (ToHttpApiData, Show, FromJSON) via Int
 
 data Game
   = Game
-      { id :: GameId,
+      { gameId :: GameId,
         name :: Text,
         handicap :: Int,
         black :: PlayerId,
         white :: PlayerId,
         rules :: Text,
-        gamedata :: GameRecord
-      }
-  deriving (Generic, Show)
-
-data GameRecord
-  = GameRecord
-      { white_player_id :: PlayerId,
-        black_player_id :: PlayerId,
-        game_id :: GameId,
         komi :: Double,
-        rules :: Text,
         winner :: PlayerId,
-        outcome :: Text,
-        end_time :: Int
+        endTime :: Int
       }
-  deriving (Generic, Show)
+  deriving (Show)
+
+instance FromJSON Game where
+  parseJSON = withObject "game" $ \o -> do
+    name <- o .: "name"
+    handicap <- o .: "handicap"
+    black <- o .: "black"
+    white <- o .: "white"
+    rules <- o .: "rules"
+    gamedata <- o .: "gamedata"
+    gameId <- gamedata .: "game_id"
+    komi <- gamedata .: "komi"
+    winner <- gamedata .: "winner"
+    endTime <- gamedata .: "end_time"
+    return Game {..}
 
 data Player
   = Player
@@ -55,7 +60,3 @@ data Player
   deriving (Generic, Show)
 
 instance FromJSON Player
-
-instance FromJSON Game
-
-instance FromJSON GameRecord
