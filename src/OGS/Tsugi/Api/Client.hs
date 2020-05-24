@@ -46,10 +46,18 @@ module OGS.Tsugi.Api.Client
   )
 where
 
-import Network.HTTP.Client.TLS
-import OGS.Tsugi.Api.Routes
+import Network.HTTP.Client.TLS (newTlsManager)
+import OGS.Tsugi.Api.Routes (OGSApi)
 import OGS.Tsugi.Api.Types
 import Servant.Client
+  ( BaseUrl (..),
+    ClientEnv,
+    ClientError,
+    ClientM,
+    Scheme (Https),
+    mkClientEnv,
+    runClientM,
+  )
 import Servant.Client.Core (RunClient)
 import Servant.Client.Generic
 
