@@ -3,6 +3,12 @@
 </p>
 
 # usage
+## streaming a specific player's games
+``` haskell
+$ runEffect $ for (playerGamesP (PlayerId 469099) (Page 1)) $ lift . print
+```
+
+## inspecting games and players
 ``` haskell
 >>> runOgs $ (getGame ogsClient $ GameId 16945653)
 Right
@@ -36,3 +42,8 @@ Right
       }
   )
 ```
+
+# built with
+* servant
+* aeson
+* pipes
