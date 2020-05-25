@@ -24,11 +24,11 @@ import Data.Text (Text)
 import GHC.Generics (Generic)
 import Servant.API (ToHttpApiData)
 
-newtype PlayerId = PlayerId Int deriving (ToHttpApiData, Show, FromJSON) via Int
+newtype PlayerId = PlayerId Int deriving (ToHttpApiData, Num, Show, FromJSON) via Int
 
-newtype GameId = GameId Int deriving (ToHttpApiData, Show, FromJSON) via Int
+newtype GameId = GameId Int deriving (ToHttpApiData, Num, Show, FromJSON) via Int
 
-newtype Page = Page Int deriving (ToHttpApiData, Show, FromJSON) via Int
+newtype Page = Page Int deriving (ToHttpApiData, Num, Show, FromJSON) via Int
 
 newtype APIResponse a = APIResponse a deriving (Show)
 
