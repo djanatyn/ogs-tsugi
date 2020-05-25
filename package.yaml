@@ -12,6 +12,7 @@ dependencies:
   - servant-client
   - servant-client-core
   - http-client-tls
+  - pipes
 
 library:
   source-dirs:
