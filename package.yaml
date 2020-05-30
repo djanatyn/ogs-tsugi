@@ -13,6 +13,7 @@ dependencies:
   - servant-client-core
   - http-client-tls
   - pipes
+  - optparse-generic
 
 library:
   source-dirs:
